@@ -154,16 +154,25 @@ const actors = [{
 //console.log(deliveries);
 //console.log(actors);
 
-function calculPrice(deliveries, truckers) {
+function getDeliveryPrice(deliveries, truckers) {
   for (var i = 0; i < deliveries.length; i++) {
     var delivery_trucker_id = deliveries[i]["truckerId"]
-    for (var j = 0; j < truckers.length; j++) {
-      if (truckers[j]["id"] == delivery_trucker_id) {
-        deliveries[i]["price"] = deliveries[i]["distance"] * truckers[j]["pricePerKm"] + deliveries[i]["volume"] * truckers[j]["pricePerVolume"]
-      }
+    var trucker = findTruckerByID(truckers, delivery_trucker_id)
+    deliveries[i]["price"] = calculPrice(deliveries[i], trucker)
+  }
+}
+
+function findTruckerByID(truckers, trucker_id) {
+  for (var i = 0; i < truckers.length; i++) {
+    if (truckers[i]["id"] == trucker_id) {
+      return truckers[i]
     }
   }
 }
 
-calculPrice(deliveries, truckers)
+function calculPrice(delivery, trucker) {
+  return delivery["distance"] * trucker["pricePerKm"] + delivery["volume"] * trucker["pricePerVolume"]
+}
+
+getDeliveryPrice(deliveries, truckers)
 console.log(deliveries);
