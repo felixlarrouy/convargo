@@ -158,7 +158,7 @@ function getDeliveryPrice(deliveries, truckers) {
   for (var i = 0; i < deliveries.length; i++) {
     var delivery_trucker_id = deliveries[i]["truckerId"]
     var trucker = findTruckerByID(truckers, delivery_trucker_id)
-    deliveries[i]["price"] = calculPrice(deliveries[i], trucker)
+    deliveries[i]["price"] = calculPrice(deliveries[i], trucker) * calculDiscount(deliveries[i], trucker)
   }
 }
 
@@ -172,6 +172,21 @@ function findTruckerByID(truckers, trucker_id) {
 
 function calculPrice(delivery, trucker) {
   return delivery["distance"] * trucker["pricePerKm"] + delivery["volume"] * trucker["pricePerVolume"]
+}
+
+function calculDiscount(delivery, trucker) {
+  if (delivery["volume"] >= 25) {
+    return 0.5
+  }
+  else if (delivery["volume"] >= 10) {
+    return 0.7
+  }
+  else if (delivery["volume"] >= 5) {
+    return 0.9
+  }
+  else {
+    return 1
+  }
 }
 
 getDeliveryPrice(deliveries, truckers)
