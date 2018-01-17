@@ -24,45 +24,54 @@ var truckers = [{
 //The `price` is updated from exercice 1
 //The `commission` is updated from exercice 3
 //The `options` is useful from exercice 4
-var deliveries = [{
-  'id': 'bba9500c-fd9e-453f-abf1-4cd8f52af377',
-  'shipper': 'bio-gourmet',
-  'truckerId': 'f944a3ff-591b-4d5b-9b67-c7e08cba9791',
-  'distance': 100,
-  'volume': 4,
-  'options': {
-    'deductibleReduction': false
+var deliveries = [
+  {
+    'id': 'bba9500c-fd9e-453f-abf1-4cd8f52af377',
+    'shipper': 'bio-gourmet',
+    'truckerId': 'f944a3ff-591b-4d5b-9b67-c7e08cba9791',
+    'distance': 100,
+    'volume': 4,
+    'options':
+    {
+      'deductibleReduction': false
+    },
+    'price': 0,
+    'commission':
+    {
+      'insurance': 0,
+      'convargo': 0
+    }
   },
-  'price': 0,
-  'commission': {
-    'insurance': 0,
-    'convargo': 0
-  }
-}, {
-  'id': '65203b0a-a864-4dea-81e2-e389515752a8',
-  'shipper': 'librairie-lu-cie',
-  'truckerId': '165d65ec-5e3f-488e-b371-d56ee100aa58',
-  'distance': 650,
-  'volume': 12,
-  'options': {
-    'deductibleReduction': true
+  {
+    'id': '65203b0a-a864-4dea-81e2-e389515752a8',
+    'shipper': 'librairie-lu-cie',
+    'truckerId': '165d65ec-5e3f-488e-b371-d56ee100aa58',
+    'distance': 650,
+    'volume': 12,
+    'options':
+    {
+      'deductibleReduction': true
+    },
+    'price': 0,
+    'commission':
+    {
+      'insurance': 0,
+      'convargo': 0
+    }
   },
-  'price': 0,
-  'commission': {
-    'insurance': 0,
-    'convargo': 0
-  }
-}, {
+  {
   'id': '94dab739-bd93-44c0-9be1-52dd07baa9f6',
   'shipper': 'otacos',
   'truckerId': '6e06c9c0-4ab0-4d66-8325-c5fa60187cf8',
   'distance': 1250,
   'volume': 30,
-  'options': {
+  'options':
+  {
     'deductibleReduction': true
   },
   'price': 0,
-  'commission': {
+  'commission':
+  {
     'insurance': 0,
     'convargo': 0
   }
@@ -141,6 +150,20 @@ const actors = [{
   }]
 }];
 
-console.log(truckers);
+//console.log(truckers);
+//console.log(deliveries);
+//console.log(actors);
+
+function calculPrice(deliveries, truckers) {
+  for (var i = 0; i < deliveries.length; i++) {
+    var delivery_trucker_id = deliveries[i]["truckerId"]
+    for (var j = 0; j < truckers.length; j++) {
+      if (truckers[j]["id"] == delivery_trucker_id) {
+        deliveries[i]["price"] = deliveries[i]["distance"] * truckers[j]["pricePerKm"] + deliveries[i]["volume"] * truckers[j]["pricePerVolume"]
+      }
+    }
+  }
+}
+
+calculPrice(deliveries, truckers)
 console.log(deliveries);
-console.log(actors);
