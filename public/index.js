@@ -161,7 +161,8 @@ function getDeliveryPrice(deliveries, truckers) {
   for (var i = 0; i < deliveries.length; i++) {
     var delivery_trucker_id = deliveries[i]["truckerId"]
     var trucker = findTruckerByID(truckers, delivery_trucker_id)
-    deliveries[i]["price"] = calculPrice(deliveries[i], trucker) * calculDiscount(deliveries[i], trucker)
+    var discount = calculDiscount(deliveries[i], trucker)
+    deliveries[i]["price"] = calculPrice(deliveries[i], trucker, discount)
   }
 }
 
@@ -173,8 +174,8 @@ function findTruckerByID(truckers, trucker_id) {
   }
 }
 
-function calculPrice(delivery, trucker) {
-  return delivery["distance"] * trucker["pricePerKm"] + delivery["volume"] * trucker["pricePerVolume"]
+function calculPrice(delivery, trucker, discount) {
+  return delivery["distance"] * trucker["pricePerKm"] + delivery["volume"] * discount * trucker["pricePerVolume"]
 }
 
 function calculDiscount(delivery, trucker) {
@@ -202,7 +203,7 @@ function getInsurance(delivery) {
 }
 
 function getTreasury(delivery) {
-  return Math.floor(delivery["distance"] / 500)
+  return Math.ceil(delivery["distance"] / 500) // Integer division
 }
 
 function getConvargo(delivery) {
@@ -220,6 +221,17 @@ function fillCommissionValues(deliveries) {
   }
 }
 
+function chargeDrivers(deliveries) {
+  for (var i = 0; i < deliveries.length; i++) {
+    if (deliveries[i]["options"]["deductibleReduction"]) {
+      var additional_fees = deliveries[i]["volume"]
+      deliveries[i]["price"] += additional_fees
+      deliveries[i]['commission']["convargo"] += additional_fees
+    }
+  }
+}
+
 getDeliveryPrice(deliveries, truckers)
 fillCommissionValues(deliveries)
+chargeDrivers(deliveries)
 console.log(deliveries);
