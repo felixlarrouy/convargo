@@ -39,6 +39,7 @@ var deliveries = [
     'commission':
     {
       'insurance': 0,
+      'treasury': 0,
       'convargo': 0
     }
   },
@@ -56,6 +57,7 @@ var deliveries = [
     'commission':
     {
       'insurance': 0,
+      'treasury': 0,
       'convargo': 0
     }
   },
@@ -73,6 +75,7 @@ var deliveries = [
   'commission':
   {
     'insurance': 0,
+    'treasury': 0,
     'convargo': 0
   }
 }];
@@ -189,5 +192,34 @@ function calculDiscount(delivery, trucker) {
   }
 }
 
+function getCommission(delivery) {
+  return delivery["price"] * 0.3
+}
+
+function getInsurance(delivery) {
+  var commission = getCommission(delivery)
+  return commission / 2
+}
+
+function getTreasury(delivery) {
+  return Math.floor(delivery["distance"] / 500)
+}
+
+function getConvargo(delivery) {
+  var commission = getCommission(delivery)
+  var insurance = getInsurance(delivery)
+  var treasury = getTreasury(delivery)
+  return commission - insurance - treasury
+}
+
+function fillCommissionValues(deliveries) {
+  for (var i = 0; i < deliveries.length; i++) {
+    deliveries[i]['commission']["insurance"] = getInsurance(deliveries[i])
+    deliveries[i]['commission']["treasury"] = getTreasury(deliveries[i])
+    deliveries[i]['commission']["convargo"] = getConvargo(deliveries[i])
+  }
+}
+
 getDeliveryPrice(deliveries, truckers)
+fillCommissionValues(deliveries)
 console.log(deliveries);
