@@ -2,22 +2,26 @@
 
 //list of truckers
 //useful for ALL 5 exercises
-var truckers = [{
-  'id': 'f944a3ff-591b-4d5b-9b67-c7e08cba9791',
-  'name': 'les-routiers-bretons',
-  'pricePerKm': 0.05,
-  'pricePerVolume': 5
-}, {
-  'id': '165d65ec-5e3f-488e-b371-d56ee100aa58',
-  'name': 'geodis',
-  'pricePerKm': 0.1,
-  'pricePerVolume': 8.5
-}, {
-  'id': '6e06c9c0-4ab0-4d66-8325-c5fa60187cf8',
-  'name': 'xpo',
-  'pricePerKm': 0.10,
-  'pricePerVolume': 10
-}];
+var truckers = [
+  {
+    'id': 'f944a3ff-591b-4d5b-9b67-c7e08cba9791',
+    'name': 'les-routiers-bretons',
+    'pricePerKm': 0.05,
+    'pricePerVolume': 5
+  },
+  {
+    'id': '165d65ec-5e3f-488e-b371-d56ee100aa58',
+    'name': 'geodis',
+    'pricePerKm': 0.1,
+    'pricePerVolume': 8.5
+  },
+  {
+    'id': '6e06c9c0-4ab0-4d66-8325-c5fa60187cf8',
+    'name': 'xpo',
+    'pricePerKm': 0.10,
+    'pricePerVolume': 10
+  }
+];
 
 //list of current shippings
 //useful for ALL exercises
@@ -62,96 +66,111 @@ var deliveries = [
     }
   },
   {
-  'id': '94dab739-bd93-44c0-9be1-52dd07baa9f6',
-  'shipper': 'otacos',
-  'truckerId': '6e06c9c0-4ab0-4d66-8325-c5fa60187cf8',
-  'distance': 1250,
-  'volume': 30,
-  'options':
-  {
-    'deductibleReduction': true
-  },
-  'price': 0,
-  'commission':
-  {
-    'insurance': 0,
-    'treasury': 0,
-    'convargo': 0
+    'id': '94dab739-bd93-44c0-9be1-52dd07baa9f6',
+    'shipper': 'otacos',
+    'truckerId': '6e06c9c0-4ab0-4d66-8325-c5fa60187cf8',
+    'distance': 1250,
+    'volume': 30,
+    'options':
+    {
+      'deductibleReduction': true
+    },
+      'price': 0,
+      'commission':
+    {
+      'insurance': 0,
+      'treasury': 0,
+      'convargo': 0
+    }
   }
-}];
+];
 
 //list of actors for payment
 //useful from exercise 5
-const actors = [{
-  'deliveryId': 'bba9500c-fd9e-453f-abf1-4cd8f52af377',
-  'payment': [{
-    'who': 'shipper',
-    'type': 'debit',
-    'amount': 0
-  }, {
-    'who': 'owner',
-    'type': 'credit',
-    'amount': 0
-  }, {
-    'who': 'insurance',
-    'type': 'credit',
-    'amount': 0
-  }, {
-    'who': 'treasury',
-    'type': 'credit',
-    'amount': 0
-  }, {
-    'who': 'convargo',
-    'type': 'credit',
-    'amount': 0
-  }]
-}, {
-  'rentalId': '65203b0a-a864-4dea-81e2-e389515752a8',
-  'payment': [{
-    'who': 'shipper',
-    'type': 'debit',
-    'amount': 0
-  }, {
-    'who': 'owner',
-    'type': 'credit',
-    'amount': 0
-  }, {
-    'who': 'insurance',
-    'type': 'credit',
-    'amount': 0
-  }, {
-    'who': 'treasury',
-    'type': 'credit',
-    'amount': 0
-  }, {
-    'who': 'convargo',
-    'type': 'credit',
-    'amount': 0
-  }]
-}, {
-  'rentalId': '94dab739-bd93-44c0-9be1-52dd07baa9f6',
-  'payment': [{
-    'who': 'shipper',
-    'type': 'debit',
-    'amount': 0
-  }, {
-    'who': 'owner',
-    'type': 'credit',
-    'amount': 0
-  }, {
-    'who': 'treasury',
-    'type': 'credit',
-    'amount': 0
-  }, {
-    'who': 'insurance',
-    'type': 'credit',
-    'amount': 0
-  }, {
-    'who': 'convargo',
-    'type': 'credit',
-    'amount': 0
-  }]
-}];
+const actors = [
+  {
+    'deliveryId': 'bba9500c-fd9e-453f-abf1-4cd8f52af377',
+    'payment':
+    [{
+      'who': 'shipper',
+      'type': 'debit',
+      'amount': 0
+    },
+    {
+      'who': 'owner',
+      'type': 'credit',
+      'amount': 0
+    },
+    {
+      'who': 'insurance',
+      'type': 'credit',
+      'amount': 0
+    },
+    {
+      'who': 'treasury',
+      'type': 'credit',
+      'amount': 0
+    },
+    {
+      'who': 'convargo',
+      'type': 'credit',
+      'amount': 0
+    }]
+  },
+  {
+    'deliveryId': '65203b0a-a864-4dea-81e2-e389515752a8',
+    'payment': [{
+      'who': 'shipper',
+      'type': 'debit',
+      'amount': 0
+    }, {
+      'who': 'owner',
+      'type': 'credit',
+      'amount': 0
+    }, {
+      'who': 'insurance',
+      'type': 'credit',
+      'amount': 0
+    }, {
+      'who': 'treasury',
+      'type': 'credit',
+      'amount': 0
+    }, {
+      'who': 'convargo',
+      'type': 'credit',
+      'amount': 0
+    }]
+  },
+  {
+    'deliveryId': '94dab739-bd93-44c0-9be1-52dd07baa9f6',
+    'payment':
+    [{
+      'who': 'shipper',
+      'type': 'debit',
+      'amount': 0
+    },
+    {
+      'who': 'owner',
+      'type': 'credit',
+      'amount': 0
+    },
+    {
+      'who': 'treasury',
+      'type': 'credit',
+      'amount': 0
+    },
+    {
+      'who': 'insurance',
+      'type': 'credit',
+      'amount': 0
+    },
+    {
+      'who': 'convargo',
+      'type': 'credit',
+      'amount': 0
+    }]
+  }
+];
 
 //console.log(truckers);
 //console.log(deliveries);
@@ -174,18 +193,26 @@ function findTruckerByID(truckers, trucker_id) {
   }
 }
 
+function findDeliveryByID(deliveries, delivery_id) {
+  for (var i = 0; i < deliveries.length; i++) {
+    if (deliveries[i]["id"] == delivery_id) {
+      return deliveries[i]
+    }
+  }
+}
+
 function calculPrice(delivery, trucker, discount) {
   return delivery["distance"] * trucker["pricePerKm"] + delivery["volume"] * discount * trucker["pricePerVolume"]
 }
 
 function calculDiscount(delivery, trucker) {
-  if (delivery["volume"] >= 25) {
+  if (delivery["volume"] > 25) {
     return 0.5
   }
-  else if (delivery["volume"] >= 10) {
+  else if (delivery["volume"] > 10) {
     return 0.7
   }
-  else if (delivery["volume"] >= 5) {
+  else if (delivery["volume"] > 5) {
     return 0.9
   }
   else {
@@ -221,17 +248,61 @@ function fillCommissionValues(deliveries) {
   }
 }
 
+function getAdditionalCharge(delivery) {
+  var additional_charge = 0
+  if (delivery["options"]["deductibleReduction"]) {
+    additional_charge = delivery["volume"]
+  }
+  return additional_charge
+}
+
+function applyCharge(delivery, additional_charge) {
+  delivery["price"] += additional_charge
+  delivery['commission']["convargo"] += additional_charge
+}
+
 function chargeDrivers(deliveries) {
   for (var i = 0; i < deliveries.length; i++) {
-    if (deliveries[i]["options"]["deductibleReduction"]) {
-      var additional_fees = deliveries[i]["volume"]
-      deliveries[i]["price"] += additional_fees
-      deliveries[i]['commission']["convargo"] += additional_fees
-    }
+    var additional_charge = getAdditionalCharge(deliveries[i])
+    applyCharge(deliveries[i], additional_charge)
+  }
+}
+
+function payShipper(actor, delivery) {
+  actor["payment"][0]["amount"] = delivery["price"]
+}
+
+function payTrucker(actor, delivery) {
+  var commission = getCommission(delivery)
+  actor["payment"][1]["amount"] = delivery["price"] - commission
+}
+
+function payInsurance(actor, delivery) {
+  actor["payment"][3]["amount"] = getInsurance(delivery)
+}
+
+function payTreasury(actor, delivery) {
+  actor["payment"][2]["amount"] = getTreasury(delivery)
+}
+
+function payConvargo(actor, delivery) {
+  actor["payment"][4]["amount"] = getConvargo(delivery) + delivery["volume"]
+}
+
+function payActors(actors, deliveries) {
+  for (var i = 0; i < actors.length; i++) {
+    var delivery_id = actors[i]["deliveryId"]
+    var delivery = findDeliveryByID(deliveries, delivery_id)
+    payShipper(actors[i], delivery)
+    payTrucker(actors[i], delivery)
+    payTreasury(actors[i], delivery)
+    payInsurance(actors[i], delivery)
+    payConvargo(actors[i], delivery)
   }
 }
 
 getDeliveryPrice(deliveries, truckers)
 fillCommissionValues(deliveries)
 chargeDrivers(deliveries)
-console.log(deliveries);
+payActors(actors, deliveries)
+console.log(actors);
