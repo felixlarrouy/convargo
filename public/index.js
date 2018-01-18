@@ -102,12 +102,12 @@ const actors = [
       'amount': 0
     },
     {
-      'who': 'insurance',
+      'who': 'treasury',
       'type': 'credit',
       'amount': 0
     },
     {
-      'who': 'treasury',
+      'who': 'insurance',
       'type': 'credit',
       'amount': 0
     },
@@ -128,11 +128,11 @@ const actors = [
       'type': 'credit',
       'amount': 0
     }, {
-      'who': 'insurance',
+      'who': 'treasury',
       'type': 'credit',
       'amount': 0
     }, {
-      'who': 'treasury',
+      'who': 'insurance',
       'type': 'credit',
       'amount': 0
     }, {
@@ -269,7 +269,7 @@ function chargeDrivers(deliveries) {
 }
 
 function payShipper(actor, delivery) {
-  actor["payment"][0]["amount"] = delivery["price"]
+  actor["payment"][0]["amount"] = delivery["price"] + getAdditionalCharge(delivery)
 }
 
 function payTrucker(actor, delivery) {
