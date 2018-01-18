@@ -269,7 +269,7 @@ function chargeDrivers(deliveries) {
 }
 
 function payShipper(actor, delivery) {
-  actor["payment"][0]["amount"] = delivery["price"] + getAdditionalCharge(delivery)
+  actor["payment"][0]["amount"] = delivery["price"]
 }
 
 function payTrucker(actor, delivery) {
